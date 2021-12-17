@@ -1,11 +1,13 @@
 package com.example.paiementservice.wsRest;
 
-import com.example.paiementservice.entity.Paiement;
+import com.example.paiementservice.mapper.PaiementMapper;
 import com.example.paiementservice.service.PaiementService;
+import com.example.paiementservice.vo.PaiementVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/paiement")
@@ -14,14 +16,17 @@ public class PaiementRest {
     @Autowired
     private PaiementService paiementService;
 
+    @Autowired
+    private PaiementMapper paiementMapper;
+
     @PostMapping("/payer")
-    public Paiement payer(@RequestBody Paiement paiement) {
-        return paiementService.payer(paiement);
+    public PaiementVO payer(@RequestBody PaiementVO paiementVO) {
+        return paiementMapper.to(paiementService.payer(paiementMapper.to(paiementVO)));
     }
 
-    @GetMapping("/")
-    public Paiement findById(@PathVariable Long id) {
-        return paiementService.findById(id).orElse(null);
+    @GetMapping("/{id}")
+    public PaiementVO findById(@PathVariable Long id) {
+        return paiementService.findById(id).map(paiementMapper::to).orElse(null);
     }
 
     @GetMapping("/exists/{id}")
@@ -30,13 +35,13 @@ public class PaiementRest {
     }
 
     @GetMapping("/all")
-    public List<Paiement> findAll() {
-        return paiementService.findAll();
+    public List<PaiementVO> findAll() {
+        return paiementService.findAll().stream().map(paiementMapper::to).collect(Collectors.toList());
     }
 
     @GetMapping("/all/commande/{ref}")
-    public List<Paiement> findByCommande(@PathVariable String ref) {
-        return paiementService.findByCommande(ref);
+    public List<PaiementVO> findByCommande(@PathVariable String ref) {
+        return paiementService.findByCommande(ref).stream().map(paiementMapper::to).collect(Collectors.toList());
     }
 
     @DeleteMapping("/{id}")

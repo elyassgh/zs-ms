@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface PaiementRepository extends JpaRepository<Paiement, Long> {
 
-    List<Paiement> findByCoAndCommandeRef(String commandeId);
+    List<Paiement> findByCommandeRef(String commandeId);
 
 }

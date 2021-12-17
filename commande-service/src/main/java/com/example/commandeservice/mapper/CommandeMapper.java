@@ -14,6 +14,7 @@ public class CommandeMapper {
     private CommandeItemMapper mapper;
 
     public CommandeVO to(Commande commande) {
+        if (commande == null) return null;
         CommandeVO commandeVO = new CommandeVO();
         commandeVO.setId(commande.getId());
         commandeVO.setDate(commande.getDate());
@@ -28,6 +29,7 @@ public class CommandeMapper {
     }
 
     public Commande to(CommandeVO commandeVO) {
+        if (commandeVO == null) return null;
         Commande cmd = new Commande();
         cmd.setId(commandeVO.getId());
         cmd.setTotal(commandeVO.getTotal());

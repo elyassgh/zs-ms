@@ -48,7 +48,7 @@ public class PaiementServiceImpl implements PaiementService {
     @Override
     public List<Paiement> findByCommande(String commandeReference) {
         if (commandeService.existsByReference(commandeReference)) return null;
-        return repository.findByCoAndCommandeRef(commandeReference);
+        return repository.findByCommandeRef(commandeReference);
     }
 
     @Override

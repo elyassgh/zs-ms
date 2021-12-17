@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "commandeService", url = "http://API-GATEWAY/commande/api/v1")
+@FeignClient("http://COMMANDE-SERVICE/api/v1/")
 public interface CommandeService {
 
     @GetMapping("/{id}")

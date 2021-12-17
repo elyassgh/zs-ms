@@ -54,18 +54,18 @@ public class PaiementServiceImpl implements PaiementService {
     @Override
     public Paiement payer(Paiement paiement) {
 
-        if (commandeService.existsByReference(paiement.getCommandeRef())) return null;
+        if (!commandeService.existsByReference(paiement.getCommandeRef())) return null;
 
         CommandeVO commandeVO = commandeService.findByReference(paiement.getCommandeRef());
         if (commandeVO.getTotalPaid() + paiement.getAmount() > commandeVO.getTotal()) return null;
 
         repository.save(paiement);
-        commandeVO.setTotal(commandeVO.getTotalPaid() - paiement.getAmount());
+        commandeVO.setTotalPaid(commandeVO.getTotalPaid() + paiement.getAmount());
 
-        if (commandeVO.getTotal() == 0) commandeVO.setStatus("paid");
+        if (commandeVO.getTotal().equals(commandeVO.getTotalPaid())) commandeVO.setStatus("paid");
 
         commandeService.update(commandeVO);
 
-        return null;
+        return paiement;
     }
 }

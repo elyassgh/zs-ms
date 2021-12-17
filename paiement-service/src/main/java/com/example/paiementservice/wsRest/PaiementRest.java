@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/paiement")
+@RequestMapping("/api/v1")
 public class PaiementRest {
 
     @Autowired

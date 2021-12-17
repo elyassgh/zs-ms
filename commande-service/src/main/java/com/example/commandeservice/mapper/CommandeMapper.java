@@ -36,6 +36,7 @@ public class CommandeMapper {
         cmd.setStatus(commandeVO.getStatus());
         cmd.setDate(commandeVO.getDate());
         cmd.setTotalPaid(commandeVO.getTotalPaid());
+        cmd.setReference(commandeVO.getReference());
         return cmd;
     }
 }

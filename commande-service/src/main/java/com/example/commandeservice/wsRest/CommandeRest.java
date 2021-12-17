@@ -33,6 +33,11 @@ public class CommandeRest {
         return commandeMapper.to(commandeItemService.createCommande(commandeVO));
     }
 
+    @PutMapping("/")
+    public CommandeVO update(@RequestBody CommandeVO commandeVO) {
+        return commandeMapper.to(commandeService.save(commandeMapper.to(commandeVO)));
+    }
+
     @GetMapping("/{id}")
     public CommandeVO findById(@PathVariable Long id) {
         return commandeService.findById(id).map(commandeMapper::to).orElse(null);

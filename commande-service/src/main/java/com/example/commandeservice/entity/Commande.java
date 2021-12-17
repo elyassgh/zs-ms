@@ -14,6 +14,7 @@ public class Commande {
     private String reference;
     private String status;
     private Double total;
+    private Double totalPaid;
     private Date date;
 
     @OneToMany(mappedBy = "commande")
@@ -49,6 +50,14 @@ public class Commande {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Double getTotalPaid() {
+        return totalPaid;
+    }
+
+    public void setTotalPaid(Double totalPaid) {
+        this.totalPaid = totalPaid;
     }
 
     public Date getDate() {

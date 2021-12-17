@@ -61,6 +61,7 @@ public class CommandeItemServiceImpl implements CommandeItemService {
         c.setReference(commandeVO.getReference());
         c.setStatus(commandeVO.getStatus());
         c.setTotal(commandeVO.getTotal());
+        c.setTotalPaid(0d);
         Commande saved = commandeService.save(c);
 
         for (CommandeItemVO commandeItemVO : commandeVO.getCommandeItems()) {

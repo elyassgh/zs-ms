@@ -20,9 +20,20 @@ public class CommandeMapper {
         commandeVO.setReference(commande.getReference());
         commandeVO.setStatus(commande.getStatus());
         commandeVO.setTotal(commande.getTotal());
+        commandeVO.setTotalPaid(commande.getTotalPaid());
         commandeVO.setCommandeItems(new ArrayList<>());
         if (commande.getCommandeItems() != null)
             commande.getCommandeItems().forEach(item -> commandeVO.getCommandeItems().add(mapper.to(item)));
         return commandeVO;
+    }
+
+    public Commande to(CommandeVO commandeVO) {
+        Commande cmd = new Commande();
+        cmd.setId(commandeVO.getId());
+        cmd.setTotal(commandeVO.getTotal());
+        cmd.setStatus(commandeVO.getStatus());
+        cmd.setDate(commandeVO.getDate());
+        cmd.setTotalPaid(commandeVO.getTotalPaid());
+        return cmd;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.commandeservice.vo;
+package com.example.paiementservice.vo;
 
 import java.util.Date;
 import java.util.List;
@@ -41,16 +41,16 @@ public class CommandeVO {
         return total;
     }
 
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
     public Double getTotalPaid() {
         return totalPaid;
     }
 
     public void setTotalPaid(Double totalPaid) {
         this.totalPaid = totalPaid;
-    }
-
-    public void setTotal(Double total) {
-        this.total = total;
     }
 
     public Date getDate() {
